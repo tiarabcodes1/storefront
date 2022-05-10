@@ -1,4 +1,4 @@
-const initialState = {
+export const initialState = {
     //State should contain a list of categories as well as the active category
     categories: [
         {id: 1, normName: 'FOOD',displayName: 'Tiara eats this stuff often', description: 'Yummy good foods to buy' },
@@ -7,6 +7,8 @@ const initialState = {
     ],
     activeCategory: ''
   }
+
+ 
   
   function categoriesReducer(state = initialState, action) {
     //Create an action that will trigger the reducer to change the active category

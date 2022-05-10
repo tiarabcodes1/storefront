@@ -1,70 +1,133 @@
-const initialState = {
+import { initialState } from './categories'
+
+const initialProdState = {
     //State should contain a list of categories as well as the active category
     products: [
-        {price: 4000, associatedCategory: 'FOOD', 
+        {id: 100,
+        price: 4000,
+        associatedCategory: 'FOOD', 
         name: 'Milk', 
-        description: 'Milked from the finest almond nuts.' },
-        {price: 1000, associatedCategory: 'FOOD', 
+        description: 'Milked from the finest almond nuts.',
+        inventoryCount: 100 },
+
+        {id: 200,
+        price: 1000, 
+        associatedCategory: 'FOOD', 
         name: 'Unicorn Horns', 
-        description: 'Don\t Ask Don\'t tell...' },
-        {price: 2000, associatedCategory: 'CLOTHES', 
+        description: 'Don\t Ask Don\'t tell...',
+        inventoryCount: 100 },
+
+        {id: 300,
+        price: 2000,
+        associatedCategory: 'CLOTHES', 
         name: 'Pig Shirt', 
-        description: 'Shirt made out of pig.'},
-        {price: 9000, associatedCategory: 'CLOTHES', 
+        description: 'Shirt made out of pig.',
+        inventoryCount: 100},
+
+        {id: 400,
+        price: 9000, 
+        associatedCategory: 'CLOTHES', 
         name: 'Worm Shirt', 
-        description: 'Green silk-worm shirt.'},
-        {price: 1234, associatedCategory: 'DOG TREATS', 
+        description: 'Green silk-worm shirt.',
+        inventoryCount: 100},
+
+        {id: 500,
+        price: 1234, 
+        associatedCategory: 'DOG TREATS', 
         name: 'Big Bone', 
-        description: 'Dug from the historical dinosaur sights in Egypt and shipped to your front door!'},
-        {price: 5678, associatedCategory: 'DOG TREATS', 
-        name: 'Peanut-Butter Filled Kog', 
-        description: 'Tis\' a kog filled with dog crack.'}
+        description: 'Dug from the historical dinosaur sights in Egypt and shipped to your front door!',
+        inventoryCount: 100},
+
+        {id: 600,
+        price: 5678, 
+        associatedCategory: 'DOG TREATS', 
+        name: 'Fun Kog', 
+        description: 'Tis\' a kog filled with dog crack (peanut butter).',
+        inventoryCount: 100}
     ],
-    activeCategory: ''
   }
   
-  function categoriesReducer(state = initialState, action) {
+  function productsReducer(state = initialProdState, action) {
     //Create an action that will trigger the reducer to change the active category
     //Update the active category in the reducer when this action is dispatched
     switch (action.type) {
       case 'ACTIVE':
         return {
           ...state,
-          categories: state.categories.map(category => {
-            if (category.associatedCategory === action.payload.associatedCategory) {
+          products: state.products.map(product => {
+            if (initialState.categories.normName === action.payload.associatedCategory) {
+              return product
+            }
+            return product;
+          }),
+        }
+      case 'INCREMENT':
+        return {
+          ...state,
+          products: state.products.map(product => {
+            if (product.name === action.payload.name) {
               return {
-                associatedCategory: category.associatedCategory,
-                price: category.price,
-                name: category.name,
-                activeCategory: category.associatedCategory
+                name: product.name, inventoryCount: product.inventoryCount + 1,
               }
             }
-            return category;
+            return product;
           }),
-        //   activeCategory: state.activeCategory,
+          // inventoryCount: state.inventoryCount + 1,
+        }
+      case 'DECREMENT':
+        return {
+          ...state,
+          products: state.products.map(product => {
+            if (product.name === action.payload.name) {
+              return {
+                name: product.name, inventoryCount: product.inventoryCount - 1,
+              }
+            }
+            return product;
+          }),
+          // inventoryCount: state.inventoryCount - 1,
         }
       case 'INACTIVE':
-            return initialState;
+            return initialProdState;
       default:
         return state
     }
   }
   
   
-  // Increment vote action creator
-  export const activateCategory = (category) => {
+  // Activate product action creator
+  export const activateProduct = (product) => {
   
     // creators return actions {type, payload}
     return {
       type: 'ACTIVE',
-      payload: category
+      payload: product
+    }
+  }
+  export const incrementInventory = (product) => {
+  
+    // creators return actions {type, payload}
+    return {
+      type: 'INCREMENT',
+      payload: product
+    }
+  }
+
+  export const decrementInventory = (product) => {
+  
+    // creators return actions {type, payload}
+    return {
+      type: 'DECREMENT',
+      payload: product
     }
   }
   
-  export const deactivateCategory = () => {
+
+  
+  export const deactivateProduct = () => {
     return {
         type: "INACTIVE"
     }
   }
   
-  export default categoriesReducer;
+  export default productsReducer;
