@@ -4,7 +4,7 @@ This is a web application that allows users to interact with an e-Commerce store
 
 ## Current Deployment
 
-[Check out the Storefront Web App!]()
+[Check out the Storefront Web App!](https://tiarabcodes1.github.io/storefront/)
 
 ## During this phase the following milestones were reached
 
