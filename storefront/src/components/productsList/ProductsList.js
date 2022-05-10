@@ -3,11 +3,12 @@ import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ListSubheader from '@mui/material/ListSubheader';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 // import ImageListItemBar from '@mui/material/ImageListItemBar';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { deactivateProduct, activateProduct, incrementInventory, decrementInventory } from '../../store/products';
+
+import ComingSoon from '../../assets/logo/ComingSoon.png'
 
 function ProductsList({ activateProduct, products, deactivateProduct, activeCategory }) {
 
@@ -19,11 +20,15 @@ function ProductsList({ activateProduct, products, deactivateProduct, activeCate
         <ImageList sx={{ width: 1000, height: 450}}>
             {products.map(product => (
                 <>
-        <ImageListItem key={product.id} cols={2}> 
+        <ImageListItem key={product.id} cols={1}> 
             <ListSubheader component="div">{product.name} <p>Description:{product.description}</p></ListSubheader>
             {/* <ListSubheader variant="body2"> </ListSubheader> */}
-          </ImageListItem>
-          <ImageListItem>
+            <img
+            src={`${ComingSoon}??w=161&fit=crop&auto=format`}
+            srcSet={`${ComingSoon}?w=248&fit=crop&auto=format&dpr=2 2x`}
+            alt='Coming Soon logo'
+            loading="lazy"
+          />
             <Button onClick={() => activateProduct(product)}>Activate {product.name}</Button>
             <Button onClick={() => deactivateProduct()}>Deactivate Product {product.name}</Button>
             <Button onClick={() => incrementInventory(product)}>Increment {product.name}</Button>

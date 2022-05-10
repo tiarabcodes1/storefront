@@ -13,8 +13,8 @@ const initialProdState = {
         {id: 200,
         price: 1000, 
         associatedCategory: 'FOOD', 
-        name: 'Unicorn Horns', 
-        description: 'Don\t Ask Don\'t tell...',
+        name: 'Unicorn Horn', 
+        description: 'Don\t Ask Don\'t tell...(1 horn included)',
         inventoryCount: 100 },
 
         {id: 300,
@@ -41,7 +41,7 @@ const initialProdState = {
         {id: 600,
         price: 5678, 
         associatedCategory: 'DOG TREATS', 
-        name: 'Fun Kog', 
+        name: 'Dog Kog', 
         description: 'Tis\' a kog filled with dog crack (peanut butter).',
         inventoryCount: 100}
     ],
