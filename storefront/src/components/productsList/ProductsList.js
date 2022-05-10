@@ -4,21 +4,21 @@ import ImageListItem from '@mui/material/ImageListItem';
 import ListSubheader from '@mui/material/ListSubheader';
 import Button from '@mui/material/Button';
 // import ImageListItemBar from '@mui/material/ImageListItemBar';
-import IconButton from '@mui/material/IconButton';
-import DeleteIcon from '@mui/icons-material/Delete';
+
 import { deactivateProduct, activateProduct, incrementInventory, decrementInventory } from '../../store/products';
 
 import ComingSoon from '../../assets/logo/ComingSoon.png'
 
-function ProductsList({ activateProduct, products, deactivateProduct, activeCategory }) {
+function ProductsList({  deactivateProduct, activeProducts }) {
 
-    console.log("ACTIVE", activeCategory);
-    console.log("FULL PRODUCTS", products);
+    console.log("ACTIVE", activeProducts);
 
     return (
-        <>
-        <ImageList sx={{ width: 1000, height: 450}}>
-            {products.map(product => (
+        <div id="product-list">
+        <ImageList sx={{ width: 1000, height: 450,}}>
+
+            {activeProducts.length ?
+            activeProducts.map((product) => (
                 <>
         <ImageListItem key={product.id} cols={1}> 
             <ListSubheader component="div">{product.name} <p>Description:{product.description}</p></ListSubheader>
@@ -29,25 +29,22 @@ function ProductsList({ activateProduct, products, deactivateProduct, activeCate
             alt='Coming Soon logo'
             loading="lazy"
           />
-            <Button onClick={() => activateProduct(product)}>Activate {product.name}</Button>
             <Button onClick={() => deactivateProduct()}>Deactivate Product {product.name}</Button>
             <Button onClick={() => incrementInventory(product)}>Increment {product.name}</Button>
             <Button onClick={() => decrementInventory(product)}>Decrement {product.name}</Button>
           </ImageListItem>
           </>
-            ))}
-            <IconButton onClick={() => deactivateProduct()}>
-                <DeleteIcon />
-            </IconButton>
+
+            )) :null}
         </ImageList>
-        </>
+        </div>
     )
 }
 
 const mapStateToProps = ({ products }) => {
     console.log('AP', products)
     return {
-        activeProduct: products.activeProduct,
+        activeProducts: products.activeProducts,
         products: products.products
     }
 }

@@ -16,19 +16,8 @@ export const initialState = {
     switch (action.type) {
       case 'ACTIVE':
         return {
-          ...state,
-          categories: state.categories.map(category => {
-            if (category.normName === action.payload.normName) {
-              return {
-                normName: category.normName,
-                id: category.id,
-                displayName: category.displayName,
-                activeCategory: category.normName
-              }
-            }
-            return category;
-          }),
-        //   activeCategory: state.activeCategory,
+          categories: state.categories,
+          activateCategory: action.payload.name
         }
       case 'INACTIVE':
             return initialState;

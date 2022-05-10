@@ -5,8 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import IconButton from '@mui/material/IconButton';
-import DeleteIcon from '@mui/icons-material/Delete';
+
 import { deactivateCategory, activateCategory } from '../../store/categories';
 
 function CategoryList({ activateCategory, categories, deactivateCategory, activeCategory}) {
@@ -28,9 +27,6 @@ function CategoryList({ activateCategory, categories, deactivateCategory, active
           </CardActions>
         </Card>
       ))}
-      <IconButton onClick={() => deactivateCategory()}>
-        <DeleteIcon />
-      </IconButton>
     </Box>
   )
 }

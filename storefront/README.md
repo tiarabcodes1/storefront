@@ -16,7 +16,7 @@ During this phase of the web application user is able to render a list of produc
 
 ## WhiteBoard
 
-![STOREFRONT.UML]()
+![STOREFRONT.UML](./src/assets/STOREFRONT-UML.png)
 
 ## How to use this as a template
 
@@ -34,6 +34,10 @@ During this phase of the web application user is able to render a list of produc
 
 ## **Features found in this application**
 
+**Category selectors**
+
+- These render their respective products to users.
+- Each category has a deactivate button that clears the products if desired. 
 
 ### Author & Contributors
 

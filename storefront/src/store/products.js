@@ -1,5 +1,3 @@
-import { initialState } from './categories'
-
 const initialProdState = {
     //State should contain a list of categories as well as the active category
     products: [
@@ -45,6 +43,7 @@ const initialProdState = {
         description: 'Tis\' a kog filled with dog crack (peanut butter).',
         inventoryCount: 100}
     ],
+    activeProducts: []
   }
   
   function productsReducer(state = initialProdState, action) {
@@ -54,12 +53,8 @@ const initialProdState = {
       case 'ACTIVE':
         return {
           ...state,
-          products: state.products.map(product => {
-            if (initialState.categories.normName === action.payload.associatedCategory) {
-              return product
-            }
-            return product;
-          }),
+          activeProducts: state.products.filter(product => 
+        product.associatedCategory === action.payload.normName)
         }
       case 'INCREMENT':
         return {
@@ -72,7 +67,7 @@ const initialProdState = {
             }
             return product;
           }),
-          inventoryCount: state.inventoryCount + 1,
+          // products: state.inventoryCount + 1,
         }
       case 'DECREMENT':
         return {
