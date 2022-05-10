@@ -36,7 +36,7 @@ function CategoryList({ activateCategory, categories, deactivateCategory, active
 }
 
 const mapStateToProps = ({ categories }) => {
-    console.log('ASHHHHH',categories)
+    console.log('CATEGORY PROPS:',categories)
   return {
     activeCategory: categories.activeCategory,
     categories: categories.categories

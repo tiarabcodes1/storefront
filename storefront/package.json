@@ -32,6 +32,7 @@
       "react-app/jest"
     ]
   },
+  "homepage": "https://tiarabcodes1.github.io/storefront/",
   "browserslist": {
     "production": [
       ">0.2%",

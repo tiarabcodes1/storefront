@@ -72,7 +72,7 @@ const initialProdState = {
             }
             return product;
           }),
-          // inventoryCount: state.inventoryCount + 1,
+          inventoryCount: state.inventoryCount + 1,
         }
       case 'DECREMENT':
         return {

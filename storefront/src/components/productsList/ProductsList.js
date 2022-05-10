@@ -20,8 +20,8 @@ function ProductsList({ activateProduct, products, deactivateProduct, activeCate
             {products.map(product => (
                 <>
         <ImageListItem key={product.id} cols={2}> 
-            <ListSubheader gutterBottom variant="h3">{product.name}</ListSubheader>
-            <Typography variant="body2" color="text.secondary">Descriptions: {product.description}</Typography>
+            <ListSubheader component="div">{product.name} <p>Description:{product.description}</p></ListSubheader>
+            {/* <ListSubheader variant="body2"> </ListSubheader> */}
           </ImageListItem>
           <ImageListItem>
             <Button onClick={() => activateProduct(product)}>Activate {product.name}</Button>
