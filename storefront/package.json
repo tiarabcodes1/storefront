@@ -26,6 +26,13 @@
     "eject": "react-scripts eject",
     "deploy": "gh-pages -d build"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tiarabcodes1/storefront.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tiarabcodes1/storefront/issues"
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
