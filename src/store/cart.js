@@ -14,7 +14,7 @@ function cartReducer(state = initialState, action) {
         case 'DELETED':
             return {
                 ...state,
-                addedProducts: state.addedProducts.filter(product => product.name !== action.payload),
+                addedProducts: state.addedProducts.filter(product => product !== action.payload),
               }
             default:
                 return state

@@ -11,6 +11,12 @@ function SimpleCart() {
 
   let cartList = useSelector((state) => state.cart.addedProducts)
   console.log(cartList)
+  let dispatch = useDispatch();
+
+  const handleDelete = (product) => {
+    let action = deleteProduct(product);
+    dispatch(action);
+}
 
   return (
     <div>
@@ -21,7 +27,7 @@ function SimpleCart() {
       <>
       <p>{product}</p>
       
-    <IconButton onClick={() => deleteProduct(product)}>
+    <IconButton onClick={() => handleDelete(product)}>
     <DeleteIcon/>
     </IconButton>
     </>
