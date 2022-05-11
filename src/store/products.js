@@ -57,6 +57,7 @@ const initialProdState = {
         product.associatedCategory === action.payload.normName)
         }
       case 'INCREMENT':
+        //TODO: ADD COUNT
         return {
           ...state,
           products: state.products.map(product => {
@@ -70,6 +71,7 @@ const initialProdState = {
           // products: state.inventoryCount + 1,
         }
       case 'DECREMENT':
+        //TODO: REMOVE COUNT
         return {
           ...state,
           products: state.products.map(product => {

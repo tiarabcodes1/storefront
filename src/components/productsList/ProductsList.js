@@ -1,24 +1,43 @@
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from "react-redux";
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ListSubheader from '@mui/material/ListSubheader';
 import Button from '@mui/material/Button';
 // import ImageListItemBar from '@mui/material/ImageListItemBar';
 
-import { deactivateProduct, activateProduct, incrementInventory, decrementInventory } from '../../store/products';
+import { incrementInventory, decrementInventory } from '../../store/products';
+import { addProduct } from "../../store/cart";
 
 import ComingSoon from '../../assets/logo/ComingSoon.png'
 
-function ProductsList({  deactivateProduct, activeProducts }) {
+function ProductsList() {
 
-    console.log("ACTIVE", activeProducts);
+    let products = useSelector((state) => state.products);
+    // let inventoryCount = useSelector((state) => state.products.inventoryCount);
+    let dispatch = useDispatch();
+
+    const handleIncrement = (inventoryCount) => {
+        let action = incrementInventory(inventoryCount);
+        dispatch(action)
+    }
+    
+    const handleDecrement = (inventoryCount) => {
+        let action = decrementInventory(inventoryCount);
+        dispatch(action)
+    }
+
+    const handleBuy = (product) => {
+        let action = addProduct(product);
+        dispatch(action);
+    }
+    console.log("ACTIVE-Products:", products.activeProducts);
 
     return (
         <div id="product-list">
         <ImageList sx={{ width: 1000, height: 450,}}>
 
-            {activeProducts.length ?
-            activeProducts.map((product) => (
+            {products.activeProducts.length ?
+            products.activeProducts.map((product) => (
                 <>
         <ImageListItem key={product.id} cols={1}> 
             <ListSubheader component="div">{product.name} <p>Description:{product.description}</p></ListSubheader>
@@ -29,9 +48,9 @@ function ProductsList({  deactivateProduct, activeProducts }) {
             alt='Coming Soon logo'
             loading="lazy"
           />
-            <Button onClick={() => deactivateProduct()}>Deactivate Product {product.name}</Button>
-            <Button onClick={() => incrementInventory(product)}>Increment {product.name}</Button>
-            <Button onClick={() => decrementInventory(product)}>Decrement {product.name}</Button>
+            <Button onClick={() => handleBuy(product.name)}>Add to Cart {product.name}</Button>
+            <Button onClick={() => handleIncrement(product.inventoryCount)}>Increment {product.name}</Button>
+            <Button onClick={() => handleDecrement(product.inventoryCount)}>Decrement {product.name}</Button>
           </ImageListItem>
           </>
 
@@ -41,18 +60,5 @@ function ProductsList({  deactivateProduct, activeProducts }) {
     )
 }
 
-const mapStateToProps = ({ products }) => {
-    console.log('AP', products)
-    return {
-        activeProducts: products.activeProducts,
-        products: products.products
-    }
-}
-
-const mapDispatchToProps = {
-    activateProduct,
-    deactivateProduct,
-}
-
 // Higher order component.
-export default connect(mapStateToProps, mapDispatchToProps)(ProductsList);
+export default ProductsList;
