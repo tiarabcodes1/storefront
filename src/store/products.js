@@ -57,27 +57,23 @@ const initialProdState = {
         product.associatedCategory === action.payload.normName)
         }
       case 'INCREMENT':
-        //TODO: ADD COUNT
-        return {
+        return{
           ...state,
-          products: state.products.map(product => {
-            if (product.name === action.payload.name) {
-              return {
-                name: product.name, inventoryCount: product.inventoryCount + 1,
-              }
+          products:
+          state.products.map(product => {
+            if (product === action.payload) {
+  
+                 product.inventoryCount = product.inventoryCount + 1;
             }
             return product;
-          }),
-          // products: state.inventoryCount + 1,
-        }
+          })};
       case 'DECREMENT':
-        //TODO: REMOVE COUNT
         return {
           ...state,
           products: state.products.map(product => {
-            if (product.name === action.payload.name) {
+            if (product.inventoryCount === action.payload.inventoryCount) {
               return {
-                name: product.name, inventoryCount: product.inventoryCount - 1,
+                 inventoryCount: product.inventoryCount - 1,
               }
             }
             return product;

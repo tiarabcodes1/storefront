@@ -13,10 +13,10 @@ function CategoryList() {
   let categories = useSelector((state) => state.categories.categories);
   let dispatch = useDispatch();
 
-  console.log("ACTIVE",activateCategory);
   console.log("FULL CATEGORY",categories);
 
   const renderCategory = (category) => {
+    console.log(category)
     let action = activateCategory(category);
     dispatch(action)
   }

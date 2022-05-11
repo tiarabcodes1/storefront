@@ -13,6 +13,7 @@ import ComingSoon from '../../assets/logo/ComingSoon.png'
 function ProductsList() {
 
     let products = useSelector((state) => state.products);
+    
     // let inventoryCount = useSelector((state) => state.products.inventoryCount);
     let dispatch = useDispatch();
 
@@ -48,9 +49,9 @@ function ProductsList() {
             alt='Coming Soon logo'
             loading="lazy"
           />
-            <Button onClick={() => handleBuy(product.name)}>Add to Cart {product.name}</Button>
-            <Button onClick={() => handleIncrement(product.inventoryCount)}>Increment {product.name}</Button>
-            <Button onClick={() => handleDecrement(product.inventoryCount)}>Decrement {product.name}</Button>
+            <Button onClick={() => handleBuy(product)}>Add to Cart</Button>
+            <Button onClick={() => handleIncrement(product)}>Increment</Button>
+            <Button onClick={() => handleDecrement(product)}>Decrement</Button>
           </ImageListItem>
           </>
 

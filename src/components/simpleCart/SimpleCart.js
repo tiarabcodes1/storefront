@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import React from 'react'
+import Card from '@mui/material/Card';
 //Displays a short list (title only) of products in the cart
 import { deleteProduct } from '../../store/cart';
 import IconButton from '@mui/material/IconButton';
@@ -10,7 +11,7 @@ function SimpleCart() {
   //state for added and removed total items in cart
 
   let cartList = useSelector((state) => state.cart.addedProducts)
-  console.log(cartList)
+  console.log('CARTLIST',cartList)
   let dispatch = useDispatch();
 
   const handleDelete = (product) => {
@@ -25,7 +26,7 @@ function SimpleCart() {
     {cartList.length ? 
     cartList.map((product) =>(
       <>
-      <p>{product}</p>
+      <Card>{product.name}</Card>
       
     <IconButton onClick={() => handleDelete(product)}>
     <DeleteIcon/>

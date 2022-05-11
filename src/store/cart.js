@@ -10,12 +10,18 @@ function cartReducer(state = initialState, action) {
             return {
               ...state,
               addedProducts: [...state.addedProducts, action.payload],
-            }
+            } 
         case 'DELETED':
             return {
                 ...state,
                 addedProducts: state.addedProducts.filter(product => product !== action.payload),
               }
+        // case 'INCREMENT':
+        //     return { ...state,
+        //         addedProducts: [...state.addedProducts, action.payload],}
+        // case 'DECREMENT':
+        //     return {...state, 
+        //         addedProducts: state.addedProducts.filter(product => product.name !== action.payload.name)}
             default:
                 return state
     }
