@@ -1,4 +1,5 @@
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from "react-redux";
+
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -6,14 +7,32 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
-import { deactivateCategory, activateCategory } from '../../store/categories';
+import { activateCategory, deactivateCategory} from '../../store/categories'
 
-function CategoryList({ activateCategory, categories, deactivateCategory, activeCategory}) {
+function CategoryList() {
+  let categories = useSelector((state) => state.categories.categories);
+  let cart = useSelector((state) => state.cart.addedProducts);
+  let dispatch = useDispatch();
 
-  console.log("ACTIVE",activeCategory);
   console.log("FULL CATEGORY",categories);
 
+  const renderCategory = (category) => {
+    console.log(category)
+    let action = activateCategory(category);
+    dispatch(action)
+  }
+
+  const hideProducts = () =>{
+    let action = deactivateCategory();
+    dispatch(action)
+  }
+  let itemCount = useSelector((state) => state.cart.productAmount)
   return (
+    <div>
+    {cart.length ? 
+      <h1>You have {itemCount} Selected Products</h1>
+      : null}
+
     <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center'}} id="list">
       {categories.map(category => (
         <Card sx={{ margin: "10px" }} raised key={category.id}>
@@ -22,27 +41,16 @@ function CategoryList({ activateCategory, categories, deactivateCategory, active
             <Typography variant="body2" color="text.secondary">Descriptions: {category.description}</Typography>
           </CardContent>
           <CardActions>
-            <Button onClick={() => activateCategory(category)}>Activate {category.normName}</Button>
-            <Button onClick={() => deactivateCategory()}>deactivateCategory {category.normName}</Button>
+            <Button onClick={() => renderCategory(category)}>Show Products </Button>
+            <Button onClick={() => hideProducts()}> Deactivate Categories </Button>
           </CardActions>
         </Card>
       ))}
     </Box>
+    </div>
   )
 }
 
-const mapStateToProps = ({ categories }) => {
-    console.log('CATEGORY PROPS:',categories)
-  return {
-    activeCategory: categories.activeCategory,
-    categories: categories.categories
-  }
-}
 
-const mapDispatchToProps = {
-  activateCategory,
-  deactivateCategory,
-}
 
-// Higher order component.
-export default connect(mapStateToProps, mapDispatchToProps)(CategoryList);
+export default CategoryList;
