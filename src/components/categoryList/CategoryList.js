@@ -11,6 +11,7 @@ import { activateCategory, deactivateCategory} from '../../store/categories'
 
 function CategoryList() {
   let categories = useSelector((state) => state.categories.categories);
+  let cart = useSelector((state) => state.cart.addedProducts);
   let dispatch = useDispatch();
 
   console.log("FULL CATEGORY",categories);
@@ -25,7 +26,13 @@ function CategoryList() {
     let action = deactivateCategory();
     dispatch(action)
   }
+  let itemCount = useSelector((state) => state.cart.productAmount)
   return (
+    <div>
+    {cart.length ? 
+      <h1>You have {itemCount} Selected Products</h1>
+      : null}
+
     <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center'}} id="list">
       {categories.map(category => (
         <Card sx={{ margin: "10px" }} raised key={category.id}>
@@ -34,12 +41,13 @@ function CategoryList() {
             <Typography variant="body2" color="text.secondary">Descriptions: {category.description}</Typography>
           </CardContent>
           <CardActions>
-            <Button onClick={() => renderCategory(category)}>Activate {category.normName}</Button>
-            <Button onClick={() => hideProducts()}>deactivateCategory {category.normName}</Button>
+            <Button onClick={() => renderCategory(category)}>Show Products </Button>
+            <Button onClick={() => hideProducts()}> Deactivate Categories </Button>
           </CardActions>
         </Card>
       ))}
     </Box>
+    </div>
   )
 }
 

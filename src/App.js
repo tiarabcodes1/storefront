@@ -24,12 +24,12 @@ function App() {
       <BrowserRouter>
       <Header />
       <Link to='/storefront'>Home </Link>
-      <Link to='/cart'> 
+      <Link to='/cart'>Cart 
       <IconButton >
       <ShoppingCartIcon/>
-      </IconButton>Cart</Link>
+      </IconButton></Link>
       <Routes>
-      <Route path="/storefront" element={<SimpleCart/>} />
+      <Route path="/cart" element={<SimpleCart/>} />
       {/* <Route path="/storefront" element={<CategoryList/>} />
       <Route path="/storefront" element={<ProductsList/>} /> */}
       </Routes>

@@ -24,7 +24,11 @@ function SimpleCart() {
 
   return (
     <div>
+
+      {cartList.length === 0 ?
       <h1>You have {itemCount} Selected Products</h1>
+      : null}
+      
 
       {/* TODO: MAP THROUGH SHORT LIST */}
     {cartList.length ? 
@@ -32,12 +36,16 @@ function SimpleCart() {
       <>
       <Card>{product.name}</Card>
 
-          <IconButton onClick={() => handleDelete(product)}>
-    <DeleteIcon/>
-    </IconButton>
+          
     </>
     )): null}
-    
+
+{cartList.length  ?
+          <IconButton onClick={() => handleDelete(cartList)}>
+          <DeleteIcon/> Clear Cart
+          </IconButton>
+      : null}
+
 
     </div>
   )

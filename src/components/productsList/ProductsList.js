@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 
 // import { incrementInventory, decrementInventory } from '../../store/products';
 import { addProduct } from "../../store/cart";
+import {  deactivateProduct } from "../../store/products";
 
 import ComingSoon from '../../assets/logo/ComingSoon.png'
 
@@ -29,6 +30,11 @@ function ProductsList() {
 
     const handleBuy = (product) => {
         let action = addProduct(product);
+        dispatch(action);
+    }
+
+    const handleHide = (product) => {
+        let action = deactivateProduct(product);
         dispatch(action);
     }
     console.log("ACTIVE-Products:", products.activeProducts);
@@ -54,9 +60,13 @@ function ProductsList() {
             <Button onClick={() => handleDecrement(product)}>Decrement</Button> */}
           </ImageListItem>
           </>
-
             )) :null}
         </ImageList>
+
+        {products.activeProducts.length ?
+            <Button onClick={() => handleHide()}> Deactivate Products </Button>
+            : null }
+
         </div>
     )
 }
