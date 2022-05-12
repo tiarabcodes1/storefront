@@ -5,7 +5,7 @@ import ListSubheader from '@mui/material/ListSubheader';
 import Button from '@mui/material/Button';
 // import ImageListItemBar from '@mui/material/ImageListItemBar';
 
-import { incrementInventory, decrementInventory } from '../../store/products';
+// import { incrementInventory, decrementInventory } from '../../store/products';
 import { addProduct } from "../../store/cart";
 
 import ComingSoon from '../../assets/logo/ComingSoon.png'
@@ -17,15 +17,15 @@ function ProductsList() {
     // let inventoryCount = useSelector((state) => state.products.inventoryCount);
     let dispatch = useDispatch();
 
-    const handleIncrement = (inventoryCount) => {
-        let action = incrementInventory(inventoryCount);
-        dispatch(action)
-    }
+    // const handleIncrement = (inventoryCount) => {
+    //     let action = incrementInventory(inventoryCount);
+    //     dispatch(action)
+    // }
     
-    const handleDecrement = (inventoryCount) => {
-        let action = decrementInventory(inventoryCount);
-        dispatch(action)
-    }
+    // const handleDecrement = (inventoryCount) => {
+    //     let action = decrementInventory(inventoryCount);
+    //     dispatch(action)
+    // }
 
     const handleBuy = (product) => {
         let action = addProduct(product);
@@ -50,8 +50,8 @@ function ProductsList() {
             loading="lazy"
           />
             <Button onClick={() => handleBuy(product)}>Add to Cart</Button>
-            <Button onClick={() => handleIncrement(product)}>Increment</Button>
-            <Button onClick={() => handleDecrement(product)}>Decrement</Button>
+            {/* <Button onClick={() => handleIncrement(product)}>Increment</Button>
+            <Button onClick={() => handleDecrement(product)}>Decrement</Button> */}
           </ImageListItem>
           </>
 

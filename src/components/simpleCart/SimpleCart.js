@@ -11,24 +11,28 @@ function SimpleCart() {
   //state for added and removed total items in cart
 
   let cartList = useSelector((state) => state.cart.addedProducts)
+  let itemCount = useSelector((state) => state.cart.productAmount)
   console.log('CARTLIST',cartList)
   let dispatch = useDispatch();
 
   const handleDelete = (product) => {
     let action = deleteProduct(product);
+    // if(product.inventoryCount !== action.payload.inventoryCount  ){
     dispatch(action);
+  // }
 }
 
   return (
     <div>
-      <h1>Selected Products</h1>
+      <h1>You have {itemCount} Selected Products</h1>
+
       {/* TODO: MAP THROUGH SHORT LIST */}
     {cartList.length ? 
     cartList.map((product) =>(
       <>
       <Card>{product.name}</Card>
-      
-    <IconButton onClick={() => handleDelete(product)}>
+
+          <IconButton onClick={() => handleDelete(product)}>
     <DeleteIcon/>
     </IconButton>
     </>

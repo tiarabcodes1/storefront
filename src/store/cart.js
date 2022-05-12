@@ -1,27 +1,24 @@
 const initialState = {
-    addedProducts: []
+    addedProducts: [],
+    productAmount: 0
 }
 
 //Create a reducer that adds the product to the array of items in state
 
 function cartReducer(state = initialState, action) {
     switch(action.type) {
-        case 'ADDED':
+        case 'ADDTOCART':
             return {
               ...state,
               addedProducts: [...state.addedProducts, action.payload],
+              productAmount: state.productAmount +1
             } 
-        case 'DELETED':
+        case 'REMOVEFROMCART':
             return {
                 ...state,
                 addedProducts: state.addedProducts.filter(product => product !== action.payload),
+                productAmount: initialState.productAmount
               }
-        // case 'INCREMENT':
-        //     return { ...state,
-        //         addedProducts: [...state.addedProducts, action.payload],}
-        // case 'DECREMENT':
-        //     return {...state, 
-        //         addedProducts: state.addedProducts.filter(product => product.name !== action.payload.name)}
             default:
                 return state
     }
@@ -29,18 +26,16 @@ function cartReducer(state = initialState, action) {
 
 export const addProduct = (product) => {
     return{
-        type: 'ADDED',
+        type: 'ADDTOCART',
         payload: product,
     }
 }
 
 export const deleteProduct = (product) => {
     return{
-        type: 'DELETED',
+        type: 'REMOVEFROMCART',
         payload: product,
     }
 }
 
 export default cartReducer;
-
-//carttest

@@ -56,30 +56,30 @@ const initialProdState = {
           activeProducts: state.products.filter(product => 
         product.associatedCategory === action.payload.normName)
         }
-      case 'INCREMENT':
+      case 'ADDTOCART':
         return{
           ...state,
           products:
           state.products.map(product => {
             if (product === action.payload) {
   
-                 product.inventoryCount = product.inventoryCount + 1;
+                 product.inventoryCount = product.inventoryCount - 1;
             }
             return product;
           })};
-      case 'DECREMENT':
+      case 'REMOVEFROMCART':
         return {
           ...state,
           products: state.products.map(product => {
-            if (product.inventoryCount === action.payload.inventoryCount) {
-              return {
-                 inventoryCount: product.inventoryCount - 1,
-              }
+            if (product === action.payload) {
+              // return {
+                 product.inventoryCount = product.inventoryCount + 1;
+              // }
             }
-            return product;
-          }),
+            return product
+          })};
           // inventoryCount: state.inventoryCount - 1,
-        }
+        
       case 'INACTIVE':
             return initialProdState;
       default:
@@ -101,7 +101,7 @@ const initialProdState = {
   
     // creators return actions {type, payload}
     return {
-      type: 'INCREMENT',
+      type: 'ADDTOCART',
       payload: product
     }
   }
@@ -110,7 +110,7 @@ const initialProdState = {
   
     // creators return actions {type, payload}
     return {
-      type: 'DECREMENT',
+      type: 'REMOVEFROMCART',
       payload: product
     }
   }
