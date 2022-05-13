@@ -23,7 +23,9 @@ function ProductsList() {
 
     const handleBuy = (product) => {
         let action = addToCart(product);
+        let deduct = product.inStock - 1
         dispatch(action);
+        return deduct
     }
 
     const handleHide = () => {
@@ -37,7 +39,7 @@ function ProductsList() {
     
     return (
         <div id="product-list">
-        <ImageList sx={{ width: 1000, height: 450,}}>
+        <ImageList sx={{ width: 1000, height: 600,} }>
 
             {products.filteredProducts.length ?
             products.filteredProducts.map((product) => (
@@ -51,6 +53,7 @@ function ProductsList() {
             alt='Coming Soon logo'
             loading="lazy"
           />
+          <ListSubheader component="div"><p>Available:{product.inStock}</p></ListSubheader>
             <Button onClick={() => handleBuy(product)}>Add to Cart</Button>
             {/* <Button onClick={() => handleIncrement(product)}>Increment</Button>
             <Button onClick={() => handleDecrement(product)}>Decrement</Button> */}

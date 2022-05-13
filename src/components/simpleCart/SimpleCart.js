@@ -12,15 +12,15 @@ function SimpleCart() {
 
   let cartList = useSelector((state) => state.cart.addedProducts)
   let itemCount = useSelector((state) => state.cart.productAmount)
+
+  
   console.log('CARTLIST',cartList)
   let dispatch = useDispatch();
 
   const handleDelete = (product, quantity) => {
     let action = removeFromCart(product);
-    // if(product.inventoryCount !== action.payload.inventoryCount  ){
     dispatch(action);
-  // }
-}
+  }
 
   return (
     <div>

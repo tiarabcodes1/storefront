@@ -26,13 +26,14 @@ const initialProdState = {
               return product})
               }
       case 'REMOVE-FROM-CART':
-           return {...state,
-            products: state.products.map((product) => {
-              if(product.name === action.payload.name){
-                product.inStock = product.inStock +1
-              }
-              return product})
-              }
+        return {...state,
+          products: state.products.map((product) => {
+            if(product === action.payload.product[0]){
+              console.log("....", state)
+              product.inStock = product.inStock +1
+            }
+            return product})
+            }
       case 'INACTIVE':
             return {...state,
               filteredProducts: []
