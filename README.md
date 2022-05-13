@@ -10,8 +10,8 @@ This is a web application that allows users to interact with an e-Commerce store
 
 During this phase of the web application user is able to render a list of products depending on the chosen category.
 
-- Render available categories 
-- Render available products that correspond to that category
+- Allows users to interact with live inventory so that I have confidence that the displayed products are in stock
+- Update the product quantity in stock when adding items to (or removing from) the cart
 - Add or Deduct product count
 
 ## WhiteBoard
@@ -38,6 +38,14 @@ During this phase of the web application user is able to render a list of produc
 
 - These render their respective products to users.
 - Each category has a deactivate button that clears the products if desired. 
+
+**API calls**
+
+- Connect your data to a database 
+    - npm i axios
+    - Specify appropriate API endpoint and route like the example below.
+![APICALLS-EXAMPLE](./src/assets/API-CALLS.png)
+
 
 ### Author & Contributors
 

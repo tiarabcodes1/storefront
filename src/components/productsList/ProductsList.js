@@ -1,4 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ListSubheader from '@mui/material/ListSubheader';
@@ -6,8 +7,8 @@ import Button from '@mui/material/Button';
 // import ImageListItemBar from '@mui/material/ImageListItemBar';
 
 // import { incrementInventory, decrementInventory } from '../../store/products';
-import { addProduct } from "../../store/cart";
-import {  deactivateProduct } from "../../store/products";
+// import { addProduct } from "../../store/cart";
+import {  deactivateProduct, getProducts, addToCart } from "../../store/products";
 
 import ComingSoon from '../../assets/logo/ComingSoon.png'
 
@@ -15,36 +16,31 @@ function ProductsList() {
 
     let products = useSelector((state) => state.products);
     
-    // let inventoryCount = useSelector((state) => state.products.inventoryCount);
+
+    console.log("Filtered Products:", products.filteredProducts);
     let dispatch = useDispatch();
 
-    // const handleIncrement = (inventoryCount) => {
-    //     let action = incrementInventory(inventoryCount);
-    //     dispatch(action)
-    // }
-    
-    // const handleDecrement = (inventoryCount) => {
-    //     let action = decrementInventory(inventoryCount);
-    //     dispatch(action)
-    // }
 
     const handleBuy = (product) => {
-        let action = addProduct(product);
+        let action = addToCart(product);
         dispatch(action);
     }
 
-    const handleHide = (product) => {
-        let action = deactivateProduct(product);
+    const handleHide = () => {
+        let action = deactivateProduct();
         dispatch(action);
     }
-    console.log("ACTIVE-Products:", products.activeProducts);
-
+    
+    useEffect(() => {
+        dispatch(getProducts());
+    }, [dispatch])
+    
     return (
         <div id="product-list">
         <ImageList sx={{ width: 1000, height: 450,}}>
 
-            {products.activeProducts.length ?
-            products.activeProducts.map((product) => (
+            {products.filteredProducts.length ?
+            products.filteredProducts.map((product) => (
                 <>
         <ImageListItem key={product.id} cols={1}> 
             <ListSubheader component="div">{product.name} <p>Description:{product.description}</p></ListSubheader>
@@ -63,7 +59,7 @@ function ProductsList() {
             )) :null}
         </ImageList>
 
-        {products.activeProducts.length ?
+        {products.filteredProducts.length ?
             <Button onClick={() => handleHide()}> Deactivate Products </Button>
             : null }
 
