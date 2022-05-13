@@ -1,6 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { filterProducts } from '../../store/products';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -8,7 +7,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
-import { activateCategory, deactivateCategory, getCategory} from '../../store/categories'
+import { activateCategory, getCategory} from '../../store/categories'
 
 function CategoryList() {
   let categories = useSelector((state) => state.categories.categories);
