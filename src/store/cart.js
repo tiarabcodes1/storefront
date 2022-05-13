@@ -7,13 +7,13 @@ const initialState = {
 
 function cartReducer(state = initialState, action) {
     switch(action.type) {
-        case 'ADDTOCART':
+        case 'ADD-TO-CART':
             return {
               ...state,
               addedProducts: [...state.addedProducts, action.payload],
               productAmount: state.productAmount +1
             } 
-        case 'REMOVEFROMCART':
+        case 'REMOVE-FROM-CART':
             return {
                 ...state,
                 addedProducts: state.addedProducts.filter(product => product === action.payload),
@@ -24,18 +24,18 @@ function cartReducer(state = initialState, action) {
     }
 }
 
-export const addProduct = (product) => {
-    return{
-        type: 'ADDTOCART',
-        payload: product,
-    }
-}
+// export const addProduct = (product) => {
+//     return{
+//         type: 'ADD-TO-CART',
+//         payload: product,
+//     }
+// }
 
-export const deleteProduct = (product) => {
-    return{
-        type: 'REMOVEFROMCART',
-        payload: product,
-    }
-}
+// export const deleteProduct = (product) => {
+//     return{
+//         type: 'REMOVE-FROM-CART',
+//         payload: product,
+//     }
+// }
 
 export default cartReducer;

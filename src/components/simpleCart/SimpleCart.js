@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import React from 'react'
 import Card from '@mui/material/Card';
 //Displays a short list (title only) of products in the cart
-import { deleteProduct } from '../../store/cart';
+import { removeFromCart } from '../../store/products';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete'
 
@@ -15,8 +15,8 @@ function SimpleCart() {
   console.log('CARTLIST',cartList)
   let dispatch = useDispatch();
 
-  const handleDelete = (product) => {
-    let action = deleteProduct(product);
+  const handleDelete = (product, quantity) => {
+    let action = removeFromCart(product);
     // if(product.inventoryCount !== action.payload.inventoryCount  ){
     dispatch(action);
   // }

@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
-
+import { useEffect } from "react";
+import { filterProducts } from '../../store/products';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -7,7 +8,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
-import { activateCategory, deactivateCategory} from '../../store/categories'
+import { activateCategory, deactivateCategory, getCategory} from '../../store/categories'
 
 function CategoryList() {
   let categories = useSelector((state) => state.categories.categories);
@@ -22,11 +23,12 @@ function CategoryList() {
     dispatch(action)
   }
 
-  const hideProducts = () =>{
-    let action = deactivateCategory();
-    dispatch(action)
-  }
   let itemCount = useSelector((state) => state.cart.productAmount)
+
+  useEffect(() => {
+    dispatch(getCategory());
+  }, [dispatch])
+
   return (
     <div>
     {cart.length ? 
@@ -34,18 +36,19 @@ function CategoryList() {
       : null}
 
     <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center'}} id="list">
-      {categories.map(category => (
+      {categories.length ?
+        categories[0].results.map(category => (
         <Card sx={{ margin: "10px" }} raised key={category.id}>
           <CardContent>
-            <Typography gutterBottom variant="h3">{category.normName}</Typography>
+            <Typography gutterBottom variant="h3">{category.name}</Typography>
             <Typography variant="body2" color="text.secondary">Descriptions: {category.description}</Typography>
           </CardContent>
           <CardActions>
             <Button onClick={() => renderCategory(category)}>Show Products </Button>
-            <Button onClick={() => hideProducts()}> Deactivate Categories </Button>
+            {/* <Button onClick={() => hideProducts()}> Deactivate Categories </Button> */}
           </CardActions>
         </Card>
-      ))}
+      )) : null}
     </Box>
     </div>
   )

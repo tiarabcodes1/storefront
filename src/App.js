@@ -30,11 +30,10 @@ function App() {
       </IconButton></Link>
       <Routes>
       <Route path="/cart" element={<SimpleCart/>} />
-      {/* <Route path="/storefront" element={<CategoryList/>} />
-      <Route path="/storefront" element={<ProductsList/>} /> */}
+      <Route path="/storefront" element={<CategoryList/>} />
+      <Route path="/storefront" element={<ProductsList/>} />
       </Routes>
       </BrowserRouter>
-      <CategoryList/>
       <ProductsList/>
 
       
