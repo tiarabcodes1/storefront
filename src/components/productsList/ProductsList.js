@@ -23,9 +23,8 @@ function ProductsList() {
 
     const handleBuy = (product) => {
         let action = addToCart(product);
-        let deduct = product.inStock - 1
-        dispatch(action);
-        return deduct
+        if(product.inStock !== 0){ dispatch(action);}
+       
     }
 
     const handleHide = () => {
@@ -45,16 +44,16 @@ function ProductsList() {
             products.filteredProducts.map((product) => (
                 <>
         <ImageListItem key={product.id} cols={1}> 
-            <ListSubheader component="div">{product.name} <p>Description:{product.description}</p></ListSubheader>
+            <ListSubheader component="div">{product.name} </ListSubheader>
             {/* <ListSubheader variant="body2"> </ListSubheader> */}
             <img
-            src={`${ComingSoon}??w=161&fit=crop&auto=format`}
-            srcSet={`${ComingSoon}?w=248&fit=crop&auto=format&dpr=2 2x`}
+            src={`${ComingSoon}`}
+            // srcSet={`${ComingSoon}`}
             alt='Coming Soon logo'
             loading="lazy"
           />
           <ListSubheader component="div"><p>Available:{product.inStock}</p></ListSubheader>
-            <Button onClick={() => handleBuy(product)}>Add to Cart</Button>
+            <Button variant="contained" onClick={() => handleBuy(product)} >Add to Cart</Button>
             {/* <Button onClick={() => handleIncrement(product)}>Increment</Button>
             <Button onClick={() => handleDecrement(product)}>Decrement</Button> */}
           </ImageListItem>
@@ -63,7 +62,7 @@ function ProductsList() {
         </ImageList>
 
         {products.filteredProducts.length ?
-            <Button onClick={() => handleHide()}> Deactivate Products </Button>
+            <Button variant="contained" onClick={() => handleHide()}> Deactivate Products </Button>
             : null }
 
         </div>

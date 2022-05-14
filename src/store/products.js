@@ -21,18 +21,22 @@ const initialProdState = {
            return {...state,
             products: state.products.map((product) => {
               if(product.name === action.payload.name){
+                console.log("HELLOOOO",product.inStock)
                 product.inStock = product.inStock -1
               }
               return product})
               }
       case 'REMOVE-FROM-CART':
         return {...state,
-          products: state.products.map((product) => {
-            if(product === action.payload.product[0]){
-              console.log("....", state)
-              product.inStock = product.inStock +1
+
+          products: action.payload.map((product) => {
+            if(product !== action.payload){
+              product.inStock = product.inStock + 1
             }
             return product})
+            
+      
+            
             }
       case 'INACTIVE':
             return {...state,
@@ -59,15 +63,15 @@ const initialProdState = {
   
 
   
-  export const removeFromCart = (product, quantity) => {
+  export const removeFromCart = (product ) => {
     return {
         type: "REMOVE-FROM-CART",
-        payload: {product, quantity}
+        payload: product
     }
   }
   export const addToCart = (product) => {
   
-    // creators return actions {type, payload}
+  
     return {
       type: 'ADD-TO-CART',
       payload: product

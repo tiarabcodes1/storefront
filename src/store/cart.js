@@ -1,3 +1,5 @@
+import { CoPresent } from "@mui/icons-material";
+
 const initialState = {
     addedProducts: [],
     productAmount: 0
@@ -16,7 +18,7 @@ function cartReducer(state = initialState, action) {
         case 'REMOVE-FROM-CART':
             return {
                 ...state,
-                addedProducts: state.addedProducts.filter(product => product === action.payload),
+                addedProducts: state.addedProducts.filter(product => product === action.payload.name, console.log(action.payload)),
                 productAmount: initialState.productAmount
               }
             default:

@@ -57,11 +57,6 @@ export const initialState = {
     }
   }
 
-  export const deactivateCategory = () => {
-    return {
-        type: "INACTIVE"
-    }
-  }
-  
+ 
   
   export default categoriesReducer;

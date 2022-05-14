@@ -30,11 +30,11 @@ function App() {
       </IconButton></Link>
       <Routes>
       <Route path="/cart" element={<SimpleCart/>} />
-      <Route path="/storefront" element={<CategoryList/>} />
-      <Route path="/storefront" element={<ProductsList/>} />
+      <Route path="/storefront" element={[<CategoryList/>, <ProductsList/>]} />
+      {/* <Route path="/storefront" element={} /> */}
       </Routes>
       </BrowserRouter>
-      <ProductsList/>
+      {/* <ProductsList/> */}
 
       
       <ThemeProvider theme={theme}>
