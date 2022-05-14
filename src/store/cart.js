@@ -1,4 +1,3 @@
-import { CoPresent } from "@mui/icons-material";
 
 const initialState = {
     addedProducts: [],

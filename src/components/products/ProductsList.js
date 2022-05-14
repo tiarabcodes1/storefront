@@ -4,10 +4,6 @@ import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ListSubheader from '@mui/material/ListSubheader';
 import Button from '@mui/material/Button';
-// import ImageListItemBar from '@mui/material/ImageListItemBar';
-
-// import { incrementInventory, decrementInventory } from '../../store/products';
-// import { addProduct } from "../../store/cart";
 import {  deactivateProduct, getProducts, addToCart } from "../../store/products";
 
 import ComingSoon from '../../assets/logo/ComingSoon.png'
@@ -15,15 +11,26 @@ import ComingSoon from '../../assets/logo/ComingSoon.png'
 function ProductsList() {
 
     let products = useSelector((state) => state.products);
+    const cartList = useSelector((state) => state.cart.addedProducts)
+    
+    
     
 
     console.log("Filtered Products:", products.filteredProducts);
     let dispatch = useDispatch();
-
+   
 
     const handleBuy = (product) => {
         let action = addToCart(product);
-        if(product.inStock !== 0){ dispatch(action);}
+        
+        
+        
+        
+        if(product){  let arrayToObject3 =  Object.assign({}, ...cartList.map((item) => ({item: item.name})))
+    console.log("product in cart:",arrayToObject3)
+    }
+    dispatch(action)
+        console.log("product added:", product.name)
        
     }
 
@@ -45,17 +52,15 @@ function ProductsList() {
                 <>
         <ImageListItem key={product.id} cols={1}> 
             <ListSubheader component="div">{product.name} </ListSubheader>
-            {/* <ListSubheader variant="body2"> </ListSubheader> */}
             <img
             src={`${ComingSoon}`}
-            // srcSet={`${ComingSoon}`}
             alt='Coming Soon logo'
             loading="lazy"
           />
-          <ListSubheader component="div"><p>Available:{product.inStock}</p></ListSubheader>
+          {/* <ListSubheader component="div"><p>Available:{product.inStock}</p></ListSubheader> */}
             <Button variant="contained" onClick={() => handleBuy(product)} >Add to Cart</Button>
-            {/* <Button onClick={() => handleIncrement(product)}>Increment</Button>
-            <Button onClick={() => handleDecrement(product)}>Decrement</Button> */}
+            <Button variant="contained">View Details</Button>
+ 
           </ImageListItem>
           </>
             )) :null}
