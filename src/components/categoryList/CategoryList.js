@@ -7,10 +7,12 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
-import { activateCategory, getCategory} from '../../store/categories'
+import categoriesSlice, { getCategories } from '../../store/categories.slice';
+let { activate } = categoriesSlice.actions;
 
 function CategoryList() {
   let categories = useSelector((state) => state.categories.categories);
+  console.log("CATEGORIES LIST",categories.length)
   let cart = useSelector((state) => state.cart.addedProducts);
   let dispatch = useDispatch();
 
@@ -18,14 +20,14 @@ function CategoryList() {
 
   const renderCategory = (category) => {
     console.log(category)
-    let action = activateCategory(category);
+    let action = activate(category);
     dispatch(action)
   }
 
   let itemCount = useSelector((state) => state.cart.productAmount)
 
   useEffect(() => {
-    dispatch(getCategory());
+    dispatch(getCategories());
   }, [dispatch])
 
   return (

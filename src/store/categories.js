@@ -31,10 +31,9 @@ export const initialState = {
   }
   
   
-  // Increment vote action creator
+
   export const activateCategory = (category) => {
-  
-    // creators return actions {type, payload}
+
     return {
       type: 'FILTER-PRODUCTS',
       payload: category

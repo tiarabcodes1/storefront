@@ -26,18 +26,17 @@ const initialProdState = {
               }
               return product})
               }
-      case 'REMOVE-FROM-CART':
-        return {...state,
-
-          products: action.payload.map((product) => {
-            if(product !== action.payload){
-              product.inStock = product.inStock + 1
-            }
-            return product})
+      // case 'REMOVE-FROM-CART':
+      //   return {...state,
+      //   products: action.payload.map((product) => {
+      //       if(product === action.payload){
+      //         product.inStock = product.inStock + 1
+      //       }
+      //       return product})
             
       
             
-            }
+      //       }
       case 'INACTIVE':
             return {...state,
               filteredProducts: []

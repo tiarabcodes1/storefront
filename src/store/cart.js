@@ -9,17 +9,29 @@ const initialState = {
 function cartReducer(state = initialState, action) {
     switch(action.type) {
         case 'ADD-TO-CART':
-            return {
-              ...state,
-              addedProducts: [...state.addedProducts, action.payload],
-              productAmount: state.productAmount +1
-            } 
+            //if any item in payload matches the item addedArray or the array === 0 keep the state unchanged
+            const exist =state.addedProducts.filter(item => item.name === action.payload.name).length > 0;
+            if(exist){
+                return {
+                    ...state
+                }
+            } else {
+                return {
+                    ...state,
+                    addedProducts: [...state.addedProducts, action.payload],
+                    productAmount: state.productAmount +1
+      
+                  } 
+            }
+        
         case 'REMOVE-FROM-CART':
-            return {
-                ...state,
-                addedProducts: state.addedProducts.filter(product => product === action.payload.name, console.log(action.payload)),
-                productAmount: initialState.productAmount
-              }
+            const inCart = state.addedProducts.filter(item => item.name !== action.payload.name)
+                return {
+                    ...state,
+                    addedProducts: inCart,
+                    productAmount: state.productAmount -1
+      
+                  } 
             default:
                 return state
     }

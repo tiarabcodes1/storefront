@@ -3,12 +3,12 @@ import { composeWithDevTools } from '@redux-devtools/extension';
 import thunk from './middleware/thunk';
 import logger from './middleware/logger'
 
-import categoryReducer from './categories';
+import categoriesSlice from './categories.slice';
 import productsReducer from './products';
 import cartReducer from './cart';
 
 let reducers = combineReducers({
-    categories: categoryReducer,
+    categories: categoriesSlice.reducer,
     products: productsReducer,
     cart: cartReducer,
 });

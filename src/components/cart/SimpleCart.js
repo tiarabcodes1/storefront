@@ -32,19 +32,18 @@ function SimpleCart() {
     cartList.map((product) =>(
       <>
       <Card>{product.name}</Card>
+      <Button variant="outlined" onClick={() => handleDelete(product)} startIcon={<DeleteIcon />}>
+          Delete
+        </Button>
       
           
     </>
     )): null}
 
-{cartList.length  ?
-          // <IconButton }>
-          // <DeleteIcon/> Clear Cart
-          // </IconButton>
-          <Button variant="outlined" onClick={() => handleDelete(cartList)} startIcon={<DeleteIcon />}>
-          Delete
-        </Button>
-      : null}
+{/* {cartList.length  ? */}
+
+         
+      {/* // : null} */}
 
 
     </div>
