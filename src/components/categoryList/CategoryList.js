@@ -8,20 +8,24 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
 import categoriesSlice, { getCategories } from '../../store/categories.slice';
+import productsSlice from "../../store/products.slice";
+let { filterProducts } = productsSlice.actions;
 let { activate } = categoriesSlice.actions;
 
 function CategoryList() {
   let categories = useSelector((state) => state.categories.categories);
-  console.log("CATEGORIES LIST",categories.length)
+
   let cart = useSelector((state) => state.cart.addedProducts);
+
   let dispatch = useDispatch();
 
-  console.log("FULL CATEGORY",categories);
-
   const renderCategory = (category) => {
-    console.log(category)
+   
     let action = activate(category);
+    let productAction = filterProducts(category)
+  
     dispatch(action)
+    dispatch(productAction)
   }
 
   let itemCount = useSelector((state) => state.cart.productAmount)

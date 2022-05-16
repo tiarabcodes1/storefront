@@ -4,13 +4,13 @@ import thunk from './middleware/thunk';
 import logger from './middleware/logger'
 
 import categoriesSlice from './categories.slice';
-import productsReducer from './products';
-import cartReducer from './cart';
+import productsSlice from './products.slice';
+import cartSlice from './cart.slice';
 
 let reducers = combineReducers({
     categories: categoriesSlice.reducer,
-    products: productsReducer,
-    cart: cartReducer,
+    products: productsSlice.reducer,
+    cart: cartSlice.reducer,
 });
 
 export default function store() {

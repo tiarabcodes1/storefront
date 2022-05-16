@@ -9,14 +9,12 @@ import axios from 'axios';
     },
     reducers: {
         set(state, action) {
-          console.log(action);
           return {
             ...state,
             categories: [action.payload]
           }
         },
         activate(state, action) {
-          console.log(action)
             return {
                 categories: state.categories,
                 activeCategory: action.payload
