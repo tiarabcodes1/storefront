@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
+import { Link } from 'react-router-dom';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ListSubheader from '@mui/material/ListSubheader';
@@ -9,7 +10,7 @@ import ComingSoon from '../../assets/logo/ComingSoon.png'
 import productsSlice, { getProducts } from "../../store/products.slice";
 import cartSlice from '../../store/cart.slice';
 
-let { addToCart, deactivate } = productsSlice.actions;
+let { addToCart, deactivate, setActiveProduct } = productsSlice.actions;
 
 let { pushInCart } = cartSlice.actions
 
@@ -27,12 +28,17 @@ function ProductsList() {
 
         dispatch(cartAction);
         dispatch(action);
-        console.log("product added:", product.name)
-       
+      
     }
 
     const handleHide = () => {
         let action = deactivate();
+        dispatch(action);
+    }
+
+    const handleDetails = (product) => {
+        console.log(product)
+        let action = setActiveProduct(product);
         dispatch(action);
     }
     
@@ -42,7 +48,7 @@ function ProductsList() {
     
     return (
         <div id="product-list">
-        <ImageList sx={{ width: 1000, height: 600,} }>
+        <ImageList sx={{ width: 1000, height: 400,} }>
 
             {products.filteredProducts.length ?
             products.filteredProducts.map((product) => (
@@ -54,10 +60,15 @@ function ProductsList() {
             alt='Coming Soon logo'
             loading="lazy"
           />
-          {/* <ListSubheader component="div"><p>Available:{product.inStock}</p></ListSubheader> */}
+          <ListSubheader>
+          <p>  ${product.price} In Stock: {product.inStock}</p>
+          </ListSubheader>
             <Button variant="contained" onClick={() => handleBuy(product)} >Add to Cart</Button>
-            <Button variant="contained">View Details</Button>
- 
+         
+            <Link to={`/product/${product._id}`}>
+            <Button variant="contained" onClick={() => handleDetails(product)}>View Details</Button>
+            </Link>
+
           </ImageListItem>
           </>
             )) :null}
@@ -71,5 +82,4 @@ function ProductsList() {
     )
 }
 
-// Higher order component.
 export default ProductsList;

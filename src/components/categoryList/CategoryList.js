@@ -36,10 +36,6 @@ function CategoryList() {
 
   return (
     <div>
-    {cart.length ? 
-      <h1>You have {itemCount} Selected Products</h1>
-      : null}
-
     <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center'}} id="list">
       {categories.length ?
         categories[0].results.map(category => (

@@ -5,7 +5,8 @@ const productsSlice = createSlice({
     name: 'products',
     initialState: {
         products: [],
-        filteredProducts: []
+        filteredProducts: [],
+        activeProduct: {}
     },
     reducers: {
         set(state, action) {
@@ -18,7 +19,6 @@ const productsSlice = createSlice({
           return {...state,
             products: state.products.map((product) => {
               if(product.name === action.payload.name){
-                console.log("HELLOOOO",product.inStock)
                 product.inStock = product.inStock -1
               }
               return product})
@@ -33,6 +33,11 @@ const productsSlice = createSlice({
           deactivate(state, action) {
             return {...state,
                 filteredProducts: []
+              }
+          },
+          setActiveProduct(state, action) {
+            return {...state,
+                activeProduct: action.payload
               }
           },
       }

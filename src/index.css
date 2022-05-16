@@ -25,6 +25,13 @@ code {
   justify-content: center;
   align-items: center;
 }
+
+#customer-info{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 #footer-content{
   display: flex;
   align-items: center;
