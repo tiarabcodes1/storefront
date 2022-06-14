@@ -1,7 +1,5 @@
 
 import { useSelector, useDispatch } from "react-redux";
-import Button from '@mui/material/Button';
-import DeleteIcon from '@mui/icons-material/Delete'
 import cartSlice from '../../store/cart.slice';
 let { removeFromCart } = cartSlice.actions;
 

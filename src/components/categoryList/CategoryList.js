@@ -15,8 +15,6 @@ let { activate } = categoriesSlice.actions;
 function CategoryList() {
   let categories = useSelector((state) => state.categories.categories);
 
-  let cart = useSelector((state) => state.cart.addedProducts);
-
   let dispatch = useDispatch();
 
   const renderCategory = (category) => {
@@ -27,8 +25,6 @@ function CategoryList() {
     dispatch(action)
     dispatch(productAction)
   }
-
-  let itemCount = useSelector((state) => state.cart.productAmount)
 
   useEffect(() => {
     dispatch(getCategories());
