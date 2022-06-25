@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
+
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -17,18 +18,17 @@ function CategoryList() {
 
   let dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(getCategories());
+  }, [dispatch])
+
   const renderCategory = (category) => {
-   
     let action = activate(category);
     let productAction = filterProducts(category)
-  
     dispatch(action)
     dispatch(productAction)
   }
 
-  useEffect(() => {
-    dispatch(getCategories());
-  }, [dispatch])
 
   return (
     <div>
@@ -41,8 +41,7 @@ function CategoryList() {
             <Typography variant="body2" color="text.secondary">Descriptions: {category.description}</Typography>
           </CardContent>
           <CardActions>
-            <Button onClick={() => renderCategory(category)}>Show Products </Button>
-            {/* <Button onClick={() => hideProducts()}> Deactivate Categories </Button> */}
+            <Button onClick={() => renderCategory(category)}>Show Products</Button>
           </CardActions>
         </Card>
       )) : null}

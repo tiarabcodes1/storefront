@@ -1,12 +1,11 @@
 import React from 'react';
 
-const Footer = () => {
-  
+function Footer () {
     return(
         <div id='footer-content'>
-        <footer >
-            &copy;2022 Tiara Brown 
-        </footer>
+            <footer>
+                &copy;2022 Tiara Brown 
+            </footer>
         </div>
     )
 }

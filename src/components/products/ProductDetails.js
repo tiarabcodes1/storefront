@@ -25,7 +25,6 @@ const ProductDetails = () => {
 
         dispatch(cartAction);
         dispatch(action);
-      
     }
 
     useEffect(() => {
@@ -34,22 +33,19 @@ const ProductDetails = () => {
 
     return(
         <div id='p-content'>
-       <ImageList sx={{ width: 1000, height: 600,} }>
-
-{activeProduct ?
-
-    <>
-<ImageListItem key={activeProduct.id} cols={1}> 
-<ListSubheader component="div">{activeProduct.name} </ListSubheader>
-<img
-src={`${ComingSoon}`}
-alt='Coming Soon logo'
-loading="lazy"
-/>
-<ListSubheader> ${activeProduct.price} In Stock: {activeProduct.inStock}</ListSubheader>
-<Button variant="contained" onClick={() => handleBuy(activeProduct)} >Add to Cart</Button>
-
-</ImageListItem>
+            <ImageList sx={{ width: 1000, height: 600,} }>
+            {activeProduct ?
+                <>
+                <ImageListItem key={activeProduct.id} cols={1}> 
+                    <ListSubheader component="div">{activeProduct.name} </ListSubheader>
+                    <img
+                    src={`${ComingSoon}`}
+                    alt='Coming Soon logo'
+                    loading="lazy"
+                    />
+                    <ListSubheader> ${activeProduct.price} In Stock: {activeProduct.inStock}</ListSubheader>
+                    <Button variant="contained" onClick={() => handleBuy(activeProduct)} >Add to Cart</Button>
+                </ImageListItem>
 </>
  :null}
 </ImageList>
