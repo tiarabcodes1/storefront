@@ -1,7 +1,6 @@
 import { useSelector } from "react-redux";
 import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
 
-
 import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
 import SimpleCart from './components/cart/SimpleCart';
@@ -9,7 +8,6 @@ import ShoppingCart from './components/cart/ShoppingCart';
 import ProductDetails from "./components/products/ProductDetails";
 import CategoryList from './components/categoryList/CategoryList';
 import ProductsList from './components/products/ProductsList';
-
 
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { purple } from '@mui/material/colors';
@@ -28,8 +26,9 @@ const theme = createTheme({
 
 function App() {
 
-  let itemCount = useSelector((state) => state.cart.productAmount)
-  let activeProduct = useSelector((state) => state.products.activeProduct)
+  let itemCount = useSelector((state) => state.cart.productAmount);
+
+  let activeProduct = useSelector((state) => state.products.activeProduct);
 
   return (
     <div className="App">
@@ -51,7 +50,7 @@ function App() {
             <Route path={`/product/${activeProduct._id}`} element={[<ProductDetails />, <SimpleCart />]} />
           </Routes>
         </BrowserRouter>
-          <Footer />
+        <Footer />
       </ThemeProvider>
     </div>
   );

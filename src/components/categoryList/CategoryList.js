@@ -20,14 +20,15 @@ function CategoryList() {
 
   useEffect(() => {
     dispatch(getCategories());
-  }, [dispatch])
+  }, [dispatch]);
 
   const renderCategory = (category) => {
     let action = activate(category);
-    let productAction = filterProducts(category)
-    dispatch(action)
-    dispatch(productAction)
-  }
+    let productAction = filterProducts(category);
+
+    dispatch(action);
+    dispatch(productAction);
+  };
 
 
   return (

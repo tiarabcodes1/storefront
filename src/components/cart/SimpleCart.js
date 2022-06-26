@@ -1,17 +1,17 @@
 import { useSelector, useDispatch } from "react-redux";
-import React from 'react'
+import React from 'react';
 
 import cartSlice from '../../store/cart.slice';
 
 import Card from '@mui/material/Card';
 import Button from '@mui/material/Button';
-import DeleteIcon from '@mui/icons-material/Delete'
+import DeleteIcon from '@mui/icons-material/Delete';
 
 let { removeFromCart } = cartSlice.actions;
 
 function SimpleCart() {
 
-  let cartList = useSelector((state) => state.cart.addedProducts)
+  let cartList = useSelector((state) => state.cart.addedProducts);
 
   let dispatch = useDispatch();
 

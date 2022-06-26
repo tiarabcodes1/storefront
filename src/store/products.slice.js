@@ -54,4 +54,5 @@ export const getProducts = () => async (dispatch, getState) =>  {
     console.log('get product error', e);
   }
 };
+
 export default productsSlice;

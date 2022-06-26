@@ -7,13 +7,13 @@ import ImageListItem from '@mui/material/ImageListItem';
 import ListSubheader from '@mui/material/ListSubheader';
 import Button from '@mui/material/Button';
 
-import ComingSoon from '../../assets/logo/ComingSoon.png'
+import ComingSoon from '../../assets/logo/ComingSoon.png';
 import productsSlice, { getProducts } from "../../store/products.slice";
 import cartSlice from '../../store/cart.slice';
 
 let { addToCart, deactivate, setActiveProduct } = productsSlice.actions;
 
-let { pushInCart } = cartSlice.actions
+let { pushInCart } = cartSlice.actions;
 
 function ProductsList() {
 
@@ -27,7 +27,6 @@ function ProductsList() {
 
         dispatch(cartAction);
         dispatch(action);
-      
     }
 
     const handleHide = () => {
@@ -44,36 +43,34 @@ function ProductsList() {
     
     useEffect(() => {
         dispatch(getProducts());
-    }, [dispatch])
+    }, [dispatch]);
     
     return (
         <div id="product-list">
             <ImageList sx={{ width: 1000, height: 400,} }>
-
                 {products.filteredProducts.length ?
-                products.filteredProducts.map((product) => (
+                    products.filteredProducts.map((product) => (
                     <>
-                <ImageListItem key={product.id} cols={1}> 
-                    <ListSubheader component="div">{product.name} </ListSubheader>
-                    <img
-                    src={`${ComingSoon}`}
-                    alt='Coming Soon logo'
-                    loading="lazy"
-                    />
-                    <ListSubheader>
-                        <p>  ${product.price} In Stock: {product.inStock}</p>
-                    </ListSubheader>
-                    <Button variant="contained" onClick={() => handleBuy(product)} >Add to Cart</Button>
-                    <Link to={`/product/${product._id}`}>
-                        <Button variant="contained" onClick={() => handleDetails(product)}>View Details</Button>
-                    </Link>
-
-                </ImageListItem>
+                    <ImageListItem key={product.id} cols={1}> 
+                        <ListSubheader component="div">{product.name} </ListSubheader>
+                        <img
+                        src={`${ComingSoon}`}
+                        alt='Coming Soon logo'
+                        loading="lazy"
+                        />
+                        <ListSubheader>
+                            <p>  ${product.price} In Stock: {product.inStock}</p>
+                        </ListSubheader>
+                        <Button variant="contained" onClick={() => handleBuy(product)} >Add to Cart</Button>
+                        <Link to={`/product/${product._id}`}>
+                            <Button variant="contained" onClick={() => handleDetails(product)}>View Details</Button>
+                        </Link>
+                    </ImageListItem>
                     </>
                 )) :null}
             </ImageList>
-            {products.filteredProducts.length ?
-                <Button variant="contained" onClick={() => handleHide()}> Deactivate Products </Button>
+                {products.filteredProducts.length ?
+                    <Button variant="contained" onClick={() => handleHide()}> Deactivate Products </Button>
                 : null }
         </div>
     )

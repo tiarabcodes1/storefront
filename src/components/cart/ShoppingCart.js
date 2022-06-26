@@ -5,19 +5,19 @@ import cartSlice from '../../store/cart.slice';
 let { removeFromCart } = cartSlice.actions;
 
 function ShoppingCart() {
-    let cartList = useSelector((state) => state.cart.addedProducts)
+    let cartList = useSelector((state) => state.cart.addedProducts);
 
     let dispatch = useDispatch();
 
     const handleDelete = (product) => {
         let action = removeFromCart(product);
         dispatch(action);
-    }
+    };
 
     const handleTotal = () => {
         let total = cartList.reduce( (acc, currentItem) =>  acc + currentItem.price, 0);
-        return total
-    }
+        return total;
+    };
 
     return (
         <div>
@@ -30,7 +30,8 @@ function ShoppingCart() {
                             <button variant="outlined" onClick={() => handleDelete(product)} > delete </button>
                         </>
                     ))}
-                    <p>Total {handleTotal()}</p> </>}
+                    <p>Total {handleTotal()}</p> 
+                </>}
             <div id='customer-info'>
                 <div id='billing'>
                     <form>
@@ -43,7 +44,7 @@ function ShoppingCart() {
                             <input placeholder="Zip" />
                         </label>
                     </form>
-                </div >
+                </div>
                 <div id='payment'>
                     <form>
                         <label>
@@ -59,4 +60,5 @@ function ShoppingCart() {
         </div>
     )
 }
+
 export default ShoppingCart;

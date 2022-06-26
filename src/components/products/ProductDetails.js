@@ -5,14 +5,14 @@ import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ListSubheader from '@mui/material/ListSubheader';
 import Button from '@mui/material/Button';
-import ComingSoon from '../../assets/logo/ComingSoon.png'
+import ComingSoon from '../../assets/logo/ComingSoon.png';
 
 import productsSlice, { getProducts } from "../../store/products.slice";
 import cartSlice from '../../store/cart.slice';
 
 let { addToCart } = productsSlice.actions;
 
-let { pushInCart } = cartSlice.actions
+let { pushInCart } = cartSlice.actions;
 
 const ProductDetails = () => {
     let activeProduct = useSelector((state) => state.products.activeProduct);
@@ -29,7 +29,7 @@ const ProductDetails = () => {
 
     useEffect(() => {
         dispatch(getProducts());
-    }, [dispatch])
+    }, [dispatch]);
 
     return(
         <div id='p-content'>
@@ -46,10 +46,9 @@ const ProductDetails = () => {
                     <ListSubheader> ${activeProduct.price} In Stock: {activeProduct.inStock}</ListSubheader>
                     <Button variant="contained" onClick={() => handleBuy(activeProduct)} >Add to Cart</Button>
                 </ImageListItem>
-</>
- :null}
-</ImageList>
-    
+                </>
+                :null}
+            </ImageList>
         </div>
     )
 }
