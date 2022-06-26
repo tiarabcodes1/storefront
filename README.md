@@ -8,11 +8,10 @@ This is a web application that allows users to interact with an e-Commerce store
 
 ## During this phase the following milestones were reached
 
-During this phase of the web application user is able to render a list of products depending on the chosen category.
+During this phase of the web application I will be adding a two full page views to the application: Product Details and Checkout.
 
-- Allows users to interact with live inventory so that I have confidence that the displayed products are in stock
-- Update the product quantity in stock when adding items to (or removing from) the cart
-- Add or Deduct product count
+- Allows users to see a full detail view of a product so that I can make a more informed choice about purchasing it.
+- Allows users to  view full cart and initiate the checkout process so that I can purchase my items and have them delivered
 
 ## WhiteBoard
 
